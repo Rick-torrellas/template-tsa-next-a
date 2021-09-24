@@ -8,15 +8,18 @@ export default function Navegacion() {
     <Link href="/"><a className="nav-link active">Home</a></Link>
   </Nav.Item>
   <Nav.Item>
-    <Link href="/"><a className="nav-link">Link</a></Link>
+    <Link href="/categories"><a className="nav-link">Categories</a></Link>
+  </Nav.Item>
+  <Nav.Item>
+  <Link href="/products"><a className="nav-link">Products</a></Link>
   </Nav.Item>
   <Nav.Item>
     <Link href="/about" ><a className="nav-link">About</a></Link>
   </Nav.Item>
   <Nav.Item>
-    <Nav.Link eventKey="disabled" disabled>
-      Disabled
-    </Nav.Link>
+    <Link href="/"><a className="nav-link">Other Products</a></Link>
+  </Nav.Item>
+  <Nav.Item>
   </Nav.Item>
 </Nav>
     )

@@ -2,6 +2,9 @@ import Layout from "./../components/Layout";
 import axios from "axios";
 import { _Sample } from "./../lib/icons/react-bootstrap";
 import config from "./../config";
+import Grid from "./../lib/Grid/Grid"
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 
 export default function Home({ res }) {
   return (
@@ -14,17 +17,7 @@ function Content({ res }) {
 
   return (
     <>
-      <_Sample width="5%" />
-      {res.map((Res, i) => {
-        return <p key={i} >{Res.name}</p>
-      })}
+     
     </>
   );
-}
-
-export async function getServerSideProps() {
-  const res = await axios.get(`${config.host}/api/data/home`);
-  return {
-    props: { res: res.data },
-  };
 }

@@ -13,6 +13,15 @@
 
 [menu](#kanbas)
 
+* Eliminar la api local.
+* Vistas:
+  * Products
+  * Categories: debe mostrar el contenido relacionado.
+    * subcategories: debe mostrar el contenido relacionado.
+  * FindOneProduct
+  * about
+* Eliminar data
+
 ## DOING
 
 [menu](#kanbas)
