@@ -27,7 +27,6 @@ export function Content({ categories, products }) {
   return (
     <>
       <h1>Categories</h1>
-      <p>{categories.length}</p>
      <NavBar categories={categories}/>
      <Carta categories={categories} products={products} />
     </>
@@ -39,7 +38,7 @@ export function Carta({categories,products}) {
          {categories.map((Categories, i) => {
         const title = Categories.Title;
         const categoriesId = Categories.id;
-        const categoriesById = config.host+'/'+categoriesId
+        const categoriesById = config.host+'/categories/'+categoriesId
         return (
             <>
           <Card style={{ width: "18rem" }}>
@@ -70,7 +69,8 @@ export function Carta({categories,products}) {
 export function NavBar({categories}) {
     return (
         <>
-          {/* //FIXME: volverlo sticki */}
+          {/* //FIXME: 
+          volverlo sticki */}
          <Navbar bg="dark" variant="dark">
         <Container>
           <Nav className="me-auto">

@@ -6,45 +6,45 @@ import Grid from "./../../lib/Grid/Grid"
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-export default function Products({ res }) {
+export default function Products({ products }) {
   return (
     <Layout title="" >
-      <Content data-testid="content" res={res} />
+      <Content data-testid="content" products={products} />
     </Layout>
   );
 }
-function Content({ res }) {
-
+export function Content({ products }) {
   return (
     <>
-    
-      {res.map((Res, i) => {
-        const title = Res.Title;
-        const link = Res.Link;
-        const thumbnail = Res.thumbnail.name;
+    <Grid>
+      {products.map((Products, i) => {
+        const title = Products.Title;
+        const link = Products.Link;
+        const thumbnail = Products.thumbnail.name;
         return (
-          <Grid>
-          <Carta 
-    //FIXME: acortar el testo con css.
+          <Carta    
           title={title}
           link={link}
           tumbnail={thumbnail}
+          key={i}
           />
-         </Grid>
         )
       })}
-     
+     </Grid>
     </>
   );
 }
 
-function Carta({title,link,tumbnail}) {
+export function Carta({title,link,tumbnail}) {
   return (
     <>
-{/* //TODO: definir con jsx un estilo solo para este componente. quitarle a los a su estilo */}
+{/* //TODO: TODO
+definir con jsx un estilo solo para este componente. quitarle a los a su estilo das */}
     <a href={link}>
-    <Card style={{ width: '18rem' }}>
+    <Card >
   <Card.Body>
+{/*   //FIXME: 
+acortar el testo con css. */}
     <Card.Title>{title}</Card.Title>
   <Card.Img variant="top" src={tumbnail} />
     <Button variant="primary">Description</Button>
@@ -57,8 +57,8 @@ function Carta({title,link,tumbnail}) {
 
 
 export async function getServerSideProps() {
-  const res = await axios.get(`${config.apiUrl}/products`);
+  const Products = await axios.get(`${config.apiUrl}/products`);
   return {
-    props: { res: res.data },
+    props: { products: Products.data },
   };
 }
