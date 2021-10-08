@@ -11,6 +11,9 @@ export default function Navegacion() {
     <Link href="/categories"><a className="nav-link">Categories</a></Link>
   </Nav.Item>
   <Nav.Item>
+    <Link href="/subcategories"><a className="nav-link">Subcategories</a></Link>
+  </Nav.Item>
+  <Nav.Item>
   <Link href="/products"><a className="nav-link">Products</a></Link>
   </Nav.Item>
   <Nav.Item>
@@ -18,8 +21,6 @@ export default function Navegacion() {
   </Nav.Item>
   <Nav.Item>
     <Link href="/"><a className="nav-link">Other Products</a></Link>
-  </Nav.Item>
-  <Nav.Item>
   </Nav.Item>
 </Nav>
     )

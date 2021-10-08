@@ -13,15 +13,13 @@
 
 [menu](#kanbas)
 
-* Eliminar la api local.
 * Vistas:
   * Products
-  * Categories: debe mostrar el contenido relacionado.
-    * subcategories: debe mostrar el contenido relacionado.
   * FindOneProduct
   * about
-* Eliminar data
-
+* Barra de navegacion:
+  En cada link, desplegar todas las categorias por ejemplo, en un menu desplegable igual con las subcategorias.
+* Crear un buscador de productos, categorias y subcategorias. y un buscador global.
 ## DOING
 
 [menu](#kanbas)

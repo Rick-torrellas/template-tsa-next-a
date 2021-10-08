@@ -3,9 +3,7 @@ import axios from "axios";
 import { _Sample } from "./../../lib/icons/react-bootstrap";
 import config from "./../../config";
 import Grid from "./../../lib/Grid/Grid"
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-
+import { Carta__Product } from "@/components/Carta";
 export default function Products({ products }) {
   return (
     <Layout title="" >
@@ -22,7 +20,7 @@ export function Content({ products }) {
         const link = Products.Link;
         const thumbnail = Products.thumbnail.name;
         return (
-          <Carta    
+          <Carta__Product    
           title={title}
           link={link}
           tumbnail={thumbnail}
@@ -34,28 +32,6 @@ export function Content({ products }) {
     </>
   );
 }
-
-export function Carta({title,link,tumbnail}) {
-  return (
-    <>
-{/* //TODO: TODO
-definir con jsx un estilo solo para este componente. quitarle a los a su estilo das */}
-    <a href={link}>
-    <Card >
-  <Card.Body>
-{/*   //FIXME: 
-acortar el testo con css. */}
-    <Card.Title>{title}</Card.Title>
-  <Card.Img variant="top" src={tumbnail} />
-    <Button variant="primary">Description</Button>
-  </Card.Body>
-</Card>
-    </a>
-    </>
-  )
-}
-
-
 export async function getServerSideProps() {
   const Products = await axios.get(`${config.apiUrl}/products`);
   return {
