@@ -1,8 +1,8 @@
 import Layout from "./../../components/Layout";
 import axios from "axios";
-import config from "./../../config";
-import { Carta__Categorie } from "@/components/Carta";
-import { NavBar__Categorie } from "@/components/Navbar";
+import config from "../../config";
+import { Carta__Categorie } from "@/components/react-bootstrap/Carta";
+import { NavBar__Categorie } from "@/components/react-bootstrap/NavBar";
 export default function Categories({ categories, products }) {
   return (
     <Layout title="">

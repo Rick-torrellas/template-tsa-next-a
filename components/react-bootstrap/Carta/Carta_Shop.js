@@ -1,40 +1,59 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import config from "config";
 import Link from "next/link";
-import Grid from "@/components/Grid";
+import {Grid} from "@/components/react-bootstrap/Grid";
 import Col from "react-bootstrap/Col";
-
-export function Carta({ children, title }) {
+import Modal from "react-bootstrap/Modal";
+import {useState} from "react";
+import { useRouter } from 'next/router';
+export function Carta__Product({ title, link, tumbnail, description }) {
+  const [show, setShow] = useState(false);
+  const router = useRouter();
+  const titleStyle = { overflow: "hidden",textOverflow: "ellipsis", whiteSpace: "nowrap" }
+  const push = () => router.push(link)
   return (
     <>
-      <Card>
-        {title && <Card.Title>{title}</Card.Title>}
-        {children}
-      </Card>
-    </>
-  );
-}
-export function Carta__Product({ title, link, tumbnail, description }) {
-  return (
-    <a href={link}>
-      <Carta title={title}>
-        {/* //TODO: TODO
-  definir con jsx un estilo solo para este componente. quitarle a los a su estilo das */}
-        <Card.Body>
-          {/*   //FIXME: 
-  acortar el testo con css. */}
+    <a >
+      <Card style={{cursor: "pointer"}}>
+      <Card.Title style={titleStyle} onClick={push}>{title}</Card.Title >
+        <Card.Body onClick={push}> 
           <Card.Img variant="top" src={tumbnail} />
-          <Button variant="primary">Description</Button>
         </Card.Body>
-      </Carta>
+        <Button variant="primary" onClick={() => setShow(true)} >Description</Button>
+      </Card>
     </a>
+    <Modal
+        show={show}
+        onHide={() => setShow(false)}
+        dialogClassName="modal-90w"
+        aria-labelledby="example-custom-modal-styling-title"
+        fullscreen={true}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-custom-modal-styling-title">
+            {title}
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body >
+{/*           //FIXME: 
+          no logro que la descripcion se quiebre, y cree una nueva linrea. */}
+          <pre>
+            {description}
+          </pre>
+        </Modal.Body>
+      </Modal>
+    <style jsx>{`
+        a {
+          text-decoration: none;
+        }
+      `}</style>
+    </>
   );
 }
 export function Carta__Categorie({ categories, products }) {
   return (
     //TODO: crear un mecanismo opcional, para filtrar los productos dependiendo del id de la categoria y subcategorie.
-    <Carta>
+    <Card>
       {categories.map((Categories, i) => {
         const title = Categories.Title;
         const categoriesId = Categories.id;
@@ -47,14 +66,15 @@ export function Carta__Categorie({ categories, products }) {
               link={link}
               products={products}
               query={query}
+              key={i}
             />
           </>
         );
       })}
-    </Carta>
+    </Card>
   );
 }
-export function Carta__Categorie_Content({ title, products, link, query }) {
+function Carta__Categorie_Content({ title, products, link, query }) {
   return (
     <>
       <Link
@@ -75,7 +95,7 @@ export function Carta__Categorie_Content({ title, products, link, query }) {
           if (title == productCategorie) {
             return (
               <>
-                <Col>
+                <Col key={i}>
                   <a href={link}>
                     <Card.Img variant="top" src={thumbnail} />
                   </a>
@@ -91,7 +111,7 @@ export function Carta__Categorie_Content({ title, products, link, query }) {
 export function Carta_Subcategorie({ subcategories, products }) {
   return (
     <>
-      <Carta>
+      <Card>
         {subcategories.map((Subcategories, i) => {
           const title = Subcategories.Title;
           const link = "/subcategories/[id]";
@@ -103,15 +123,16 @@ export function Carta_Subcategorie({ subcategories, products }) {
                 link={link}
                 products={products}
                 query={query}
+                key={i}
               />
             </>
           );
         })}
-      </Carta>
+      </Card>
     </>
   );
 }
-export function Carta__Subcategorie_Content({ title, products, link, query }) {
+function Carta__Subcategorie_Content({ title, products, link, query }) {
   return (
     <>
       <Link
@@ -133,7 +154,7 @@ export function Carta__Subcategorie_Content({ title, products, link, query }) {
             if (title == productSubcat) {
               return (
                 <>
-                  <Col>
+                  <Col key={i}>
                     <a href={link}>
                       <Card.Img variant="top" src={thumbnail} />
                     </a>

@@ -2,19 +2,20 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import config from "../../config";
 import Layout from "../../components/Layout";
-import Grid from "@/components/Grid";
-import { Carta__Product } from "@/components/Carta";
-import { NavBar__SubCategorie } from "../../components/Navbar";
+import {Grid} from "@/components/react-bootstrap/Grid";
+import { Carta__Product } from "@/components/react-bootstrap/Carta";
+import { NavBar__SubCategorie } from "../../components/react-bootstrap/NavBar";
 var _ = require('lodash');
 function Subcategorie({ categorie, products, subcategories }) {
   const router = useRouter();
-  const { id } = router.query;
+  const { id,subid } = router.query;
   return (
     <>
       <Layout>
         <Content
           data-testid="content"
           id={id}
+          subid={subid}
           categorie={categorie}
           products={products}
           subcategories={subcategories}
@@ -23,11 +24,18 @@ function Subcategorie({ categorie, products, subcategories }) {
     </>
   );
 }
-export function Content({ categorie, products,subcategories, id }) {
+export function Content({ categorie, products,subcategories, id,subid }) {
   const catTitle = categorie.Title;
+  let subtitle;
+  subcategories.forEach(SUB => {
+    if (subid == SUB.id) {
+      subtitle = SUB.Title;
+    }
+  });
   return (
     <>
       <h1>{catTitle}</h1>
+      <h3>{subtitle}</h3>
       <NavBar__SubCategorie 
       id={id}
       subcategories={subcategories}
@@ -38,7 +46,9 @@ export function Content({ categorie, products,subcategories, id }) {
           const link = Products.Link;
           const thumbnail = Products.thumbnail.name;
           const productId = Products.categories.id;
-            return (
+         
+         console.log(subtitle)
+          return (
               <>
                 <Carta__Product
                   /* //FIXME: 

@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import axios from "axios";
-import config from "./../../config";
+import config from "../../config";
 import Layout from "./../../components/Layout";
-import Grid from "@/components/Grid";
-import { Carta__Product } from "@/components/Carta";
-import { NavBar__SubCat } from "../../components/Navbar";
+import {Grid} from "@/components/react-bootstrap/Grid";
+import { Carta__Product } from "@/components/react-bootstrap/Carta";
+import { NavBar__SubCat } from "../../components/react-bootstrap/NavBar";
 var _ = require("lodash");
 function Subcategorie({ products, subcategories }) {
   const router = useRouter();

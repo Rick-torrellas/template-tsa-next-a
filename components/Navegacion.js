@@ -9,13 +9,14 @@ export default function Navegacion({ navCat, navSubCat }) {
           <a className="nav-link active">Home</a>
         </Link>
       </Nav.Item>
-      <Categories categories={navCat} />
-      <Subcategories subcategories={navSubCat} />
       <Nav.Item>
         <Link href="/products">
           <a className="nav-link">Products</a>
         </Link>
       </Nav.Item>
+      <Categories navCat={navCat}  />
+      <Subcategories navSubCat={navSubCat} className="bg-dark" />
+
       <Nav.Item>
         <Link href="/about">
           <a className="nav-link">About</a>
@@ -35,16 +36,16 @@ export function Categories({ navCat }) {
   };
   if (navCat) {
     return (
-      <Nav.Item>
-        <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
+      <Nav.Item >
+        <Dropdown >
+          <Dropdown.Toggle style={{backgroundColor: "black"}} id="dropdown-categories">
             Categories
           </Dropdown.Toggle>
           <Dropdown.Menu>
             {navCat.map((cat) => {
               const link = {
                 pathname: "/categories/[id]",
-                query: { id: "my-post" },
+                query: { id: cat.id },
               };
               return (
                 <>
@@ -82,14 +83,14 @@ export function Subcategories({navSubCat}) {
     return (
       <Nav.Item>
         <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
+          <Dropdown.Toggle style={{backgroundColor: "black"}} id="dropdown-subcategories">
             Subcategories
           </Dropdown.Toggle>
           <Dropdown.Menu>
             {navSubCat.map((subCat) => {
               const link = {
                 pathname: "/subcategories/[id]",
-                query: { id: "my-post" },
+                query: { id: subCat.id },
               };
               return (
                 <>
@@ -100,7 +101,7 @@ export function Subcategories({navSubCat}) {
               );
             })}
             <Dropdown.Divider />
-            <Link href={link} passHref>
+            <Link href={linkSubcat} passHref>
               <Dropdown.Item>Subcategories</Dropdown.Item>
             </Link>
           </Dropdown.Menu>

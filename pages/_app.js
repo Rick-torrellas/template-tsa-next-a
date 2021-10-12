@@ -1,8 +1,7 @@
 import 'bootswatch/dist/cyborg/bootstrap.min.css';
 import './../styles/styles.css';
 import Head from "next/head";
-import config from "./../config";
-
+import config from "../config";
 
 export default function MyApp({ Component, pageProps }) {
   const icon = config.icon;

@@ -1,24 +1,19 @@
 import Layout from "./../components/Layout";
 import axios from "axios";
-import config from "./../config";
-import Grid from "@/components/Grid";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+import config from "../config";
 
 export default function Home({ navSubCat, navCat }) {
   return (
-    <Layout title="" >
+    <Layout 
+    title="" 
+    navCat={navCat} 
+    navSubCat={navSubCat}>
       <Content data-testid="content" />
     </Layout>
   );
 }
 function Content() {
-
-  return (
-    <>
-     
-    </>
-  );
+  return <></>;
 }
 export async function getServerSideProps() {
   const subcatUrl = `${config.apiUrl}/sub-categories`;
@@ -28,6 +23,6 @@ export async function getServerSideProps() {
   const navSubCat = _navSubCat.data;
   const navCat = _navCat.data;
   return {
-    props: { navSubCat: navSubCat, navCat: navCat }
+    props: { navSubCat: navSubCat, navCat: navCat },
   };
 }

@@ -1,8 +1,6 @@
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Link from "next/link";
-import Grid from "@/components/Grid";
-import config from "../../config";
 import Container from "react-bootstrap/Container";
 export function NavBar__Categorie({ categories }) {
   return (
@@ -22,8 +20,8 @@ export function NavBar__Categorie({ categories }) {
                 };
                 return (
                   <>
-                    <Link href={href} passHref>
-                      <Nav.Link>{title}</Nav.Link>
+                    <Link href={href} passHref >
+                      <Nav.Link key={i}>{title}</Nav.Link>
                     </Link>
                   </>
                 );
@@ -38,8 +36,9 @@ export function NavBar__SubCategorie({ subcategories, id, url }) {
   return (
     <>
       {/* //FIXME: el diseno no me gusta, quiero uno mas precido a NavBar__Categorie */}
-      <Nav>
-        <Grid>
+      <Navbar bg="dark" variant="dark">
+      <Container>
+      <Nav className="me-auto">
           {subcategories.map((subCat, i) => {
             const subid = subCat.id;
             const link = {
@@ -48,16 +47,15 @@ export function NavBar__SubCategorie({ subcategories, id, url }) {
             };
             return (
               <>
-                <Nav.Item key={i}>
-                  <Link href={link}>
-                    <a style={{ color: "white" }}>{subCat.Title}</a>
+                  <Link href={link} passHref>
+                    <Nav.Link >{subCat.Title}</Nav.Link>
                   </Link>
-                </Nav.Item>
               </>
             );
           })}
-        </Grid>
-      </Nav>
+        </Nav>
+      </Container>
+      </Navbar>
     </>
   );
 }

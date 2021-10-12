@@ -1,9 +1,9 @@
 import Layout from "./../../components/Layout";
 import axios from "axios";
-import { _Sample } from "../../components/icons/react-bootstrap";
-import config from "./../../config";
-import Grid from "@/components/Grid";
-import { Carta__Product } from "@/components/Carta";
+import { _Sample } from "../../components/react-bootstrap/icons/react-bootstrap";
+import config from "../../config";
+import {Grid} from "@/components/react-bootstrap/Grid";
+import { Carta__Product } from "@/components/react-bootstrap/Carta";
 export default function Products({ products }) {
   return (
     <Layout title="" >
@@ -19,12 +19,14 @@ export function Content({ products }) {
         const title = Products.Title;
         const link = Products.Link;
         const thumbnail = Products.thumbnail.name;
+        const description = Products.description;
         return (
           <Carta__Product    
           title={title}
           link={link}
           tumbnail={thumbnail}
           key={i}
+          description={description}
           />
         )
       })}

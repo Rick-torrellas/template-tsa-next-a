@@ -26,7 +26,7 @@ export default function Layout({ children, title , nav = true , footer = true ,c
       <Head>
         <title>{title}</title>
       </Head>
-      {nav && <Navegacion />}
+      {nav && <Navegacion navCat={navCat} navSubCat={navSubCat} />}
       <main style={{margin: childrenMargin}}>{children}</main>
       {footer && <Footer />}
     </>
