@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "docs": "jsdoc -c jsdoc.json",
-    "debug": "cross-env DEBUG=* next dev",
+    "debug": "cross-env NEXT_PUBLIC_DEBUG='true' next dev",
     "test": "jest --watch",
     "test:ci": "jest --ci",
     "debug:next": ""
@@ -17,6 +17,7 @@
     "axios": "^0.21.1",
     "bootswatch": "^5.1.0",
     "classnames": "^2.2.6",
+    "cross-env": "^7.0.3",
     "lodash": "^4.17.21",
     "next": "11.1.0",
     "nprogress": "^0.2.0",

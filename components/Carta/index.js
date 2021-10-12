@@ -2,7 +2,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import config from "config";
 import Link from "next/link";
-import Grid from "lib/Grid/Grid";
+import Grid from "@/components/Grid";
 import Col from "react-bootstrap/Col";
 
 export function Carta({ children, title }) {
@@ -15,9 +15,7 @@ export function Carta({ children, title }) {
     </>
   );
 }
-
 export function Carta__Product({ title, link, tumbnail, description }) {
- 
   return (
     <a href={link}>
       <Carta title={title}>
@@ -35,7 +33,7 @@ export function Carta__Product({ title, link, tumbnail, description }) {
 }
 export function Carta__Categorie({ categories, products }) {
   return (
-     //TODO: crear un mecanismo opcional, para filtrar los productos dependiendo del id de la categoria y subcategorie.
+    //TODO: crear un mecanismo opcional, para filtrar los productos dependiendo del id de la categoria y subcategorie.
     <Carta>
       {categories.map((Categories, i) => {
         const title = Categories.Title;
@@ -56,14 +54,15 @@ export function Carta__Categorie({ categories, products }) {
     </Carta>
   );
 }
-export function Carta__Categorie_Content({ title, products, link,query }) {
+export function Carta__Categorie_Content({ title, products, link, query }) {
   return (
     <>
-      <Link 
-      href={{
-        pathname: link,
-        query: {id: query}
-      }}>
+      <Link
+        href={{
+          pathname: link,
+          query: { id: query },
+        }}
+      >
         <a>
           <Card.Title>{title}</Card.Title>
         </a>
@@ -84,6 +83,65 @@ export function Carta__Categorie_Content({ title, products, link,query }) {
               </>
             );
           } else return null;
+        })}
+      </Grid>
+    </>
+  );
+}
+export function Carta_Subcategorie({ subcategories, products }) {
+  return (
+    <>
+      <Carta>
+        {subcategories.map((Subcategories, i) => {
+          const title = Subcategories.Title;
+          const link = "/subcategories/[id]";
+          const query = Subcategories.id;
+          return (
+            <>
+              <Carta__Subcategorie_Content
+                title={title}
+                link={link}
+                products={products}
+                query={query}
+              />
+            </>
+          );
+        })}
+      </Carta>
+    </>
+  );
+}
+export function Carta__Subcategorie_Content({ title, products, link, query }) {
+  return (
+    <>
+      <Link
+        href={{
+          pathname: link,
+          query: { id: query },
+        }}
+      >
+        <a>
+          <Card.Title>{title}</Card.Title>
+        </a>
+      </Link>
+      <Grid>
+        {products.map((Products, i) => {
+          const thumbnail = Products.thumbnail.name;
+          const link = Products.Link;
+          return Products.sub_categories.map((Subcat, i) => {
+            const productSubcat = Subcat.Title;
+            if (title == productSubcat) {
+              return (
+                <>
+                  <Col>
+                    <a href={link}>
+                      <Card.Img variant="top" src={thumbnail} />
+                    </a>
+                  </Col>
+                </>
+              );
+            } else return null;
+          });
         })}
       </Grid>
     </>

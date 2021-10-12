@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import config from "../../config";
 import Layout from "../../components/Layout";
-import Grid from "../../lib/Grid/Grid";
+import Grid from "@/components/Grid";
 import { Carta__Product } from "@/components/Carta";
 import { NavBar__SubCategorie } from "../../components/Navbar";
 var _ = require('lodash');

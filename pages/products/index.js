@@ -1,8 +1,8 @@
 import Layout from "./../../components/Layout";
 import axios from "axios";
-import { _Sample } from "./../../lib/icons/react-bootstrap";
+import { _Sample } from "../../components/icons/react-bootstrap";
 import config from "./../../config";
-import Grid from "./../../lib/Grid/Grid"
+import Grid from "@/components/Grid";
 import { Carta__Product } from "@/components/Carta";
 export default function Products({ products }) {
   return (

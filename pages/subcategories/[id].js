@@ -2,20 +2,20 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import config from "./../../config";
 import Layout from "./../../components/Layout";
-import Grid from "./../../lib/Grid/Grid";
+import Grid from "@/components/Grid";
 import { Carta__Product } from "@/components/Carta";
-import { NavBar__SubCategorie } from "../../components/Navbar";
-var _ = require('lodash');
-function Subcategorie({ categorie, products, subcategories }) {
+import { NavBar__SubCat } from "../../components/Navbar";
+var _ = require("lodash");
+function Subcategorie({ products, subcategories }) {
   const router = useRouter();
   const { id } = router.query;
+  console.log(id);
   return (
     <>
       <Layout>
         <Content
           data-testid="content"
           id={id}
-          categorie={categorie}
           products={products}
           subcategories={subcategories}
         />
@@ -23,59 +23,60 @@ function Subcategorie({ categorie, products, subcategories }) {
     </>
   );
 }
-export function Content({ categorie, products,subcategories, id }) {
-  const catTitle = categorie.Title;
+export function Content({ products, subcategories, id }) {
+  let title;
+  config.debug && console.log(subcategories);
+  subcategories.forEach((element) => {
+    config.debug && console.log(element);
+    if (element.id == id) {
+      title = element.Title;
+    }
+  });
   return (
     <>
-      <h1>{catTitle}</h1>
-      <NavBar__SubCategorie 
-      id={id}
-      subcategories={subcategories}
-      />
+      <h1>{title}</h1>
+      <NavBar__SubCat subcategories={subcategories} />
       <Grid>
         {products.map((Products, i) => {
           const title = Products.Title;
           const link = Products.Link;
           const thumbnail = Products.thumbnail.name;
           const productId = Products.categories.id;
-            return (
-              <>
-                <Carta__Product
-                  /* //FIXME: 
+          return (
+            <>
+              <Carta__Product
+                /* //FIXME: 
                   acortar el testo con css. */
-                  key={i}
-                  title={title}
-                  link={link}
-                  tumbnail={thumbnail}
-                />
-              </>
-            );
+                key={i}
+                title={title}
+                link={link}
+                tumbnail={thumbnail}
+              />
+            </>
+          );
         })}
       </Grid>
     </>
   );
 }
 export async function getServerSideProps(context) {
-/* //TODO: TODO
-Los productos que le vamos a mandar a la plantilla, seran los que tenga el id de la categoria seleccionada.  */
-const _subcategories = [];
-const products = [];
-  const { id,subid } = context.query;
-  const categorie = await axios.get(`${config.apiUrl}/categories/${id}`);
+  const products = [];
+  const { id } = context.query;
+  const _subcategories = await axios.get(`${config.apiUrl}/sub-categories`);
   const _products = await axios.get(`${config.apiUrl}/products`);
-  _products.data.forEach(element => {
-    if (element.categories.id == id) {
-        element.sub_categories.forEach(sub => {
-       if (sub.id == subid) {
-           products.push(element);
-       }     
-        _subcategories.push(sub);
+  const subcategories = _subcategories.data;
+  _products.data.forEach((element) => {
+      element.sub_categories.forEach((sub) => {
+        if (sub.id == id) {
+          products.push(element);
+        }
       });
-    }
   });
-  const subcategories = _.uniqWith(_subcategories, _.isEqual);
   return {
-    props: { categorie: categorie.data, products: products, subcategories: subcategories },
+    props: {
+      products: products,
+      subcategories: subcategories
+    },
   };
 }
 export default Subcategorie;

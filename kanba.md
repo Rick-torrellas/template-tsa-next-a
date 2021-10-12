@@ -13,6 +13,7 @@
 
 [menu](#kanbas)
 
+* Colocar toda la logica del back end, a los componentes.
 * Vistas:
   * Products
   * FindOneProduct

@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import PropTypes from "prop-types";
 import NProgress from "nprogress";
 import nProgress from "nprogress";
 import Navegacion from "./Navegacion";
 import Footer from "./Footer";
 
-export default function Layout({ children, title , nav = true , footer = true ,childrenMargin}) {
+export default function Layout({ children, title , nav = true , footer = true ,childrenMargin, navCat, navSubCat}) {
   const router = useRouter();
   useEffect(() => {
     // barra de carga, cuando se renderiza la pagina
@@ -33,11 +32,3 @@ export default function Layout({ children, title , nav = true , footer = true ,c
     </>
   );
 };
-
-Layout.proptypes = {
-  children: PropTypes.node,
-  title: PropTypes.string,
-  footer: PropTypes.bool,
-  nav: PropTypes.bool,
-};
-
