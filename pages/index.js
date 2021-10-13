@@ -1,15 +1,16 @@
-import Layout from "./../components/Layout";
+import {Layout_Shop} from "../components/react-bootstrap/Layout";
 import axios from "axios";
-import config from "../config";
+import config from "@/config/index";
 
 export default function Home({ navSubCat, navCat }) {
+  const title = "Home"
   return (
-    <Layout 
-    title="" 
+    <Layout_Shop 
+    title={`${config.title} ${title}`} 
     navCat={navCat} 
     navSubCat={navSubCat}>
       <Content data-testid="content" />
-    </Layout>
+    </Layout_Shop>
   );
 }
 function Content() {

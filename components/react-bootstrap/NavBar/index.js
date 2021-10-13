@@ -1,7 +1,8 @@
-import {NavBar__Categorie,NavBar__SubCategorie,NavBar__SubCat} from "./NavBar_Shop";
+import {NavBar__Categorie,NavBar__SubCategorie,NavBar__SubCat,NavBar_Main} from "./NavBar_Shop";
 
 export {
   NavBar__Categorie,
   NavBar__SubCategorie,
-  NavBar__SubCat
+  NavBar__SubCat,
+  NavBar_Main
 }

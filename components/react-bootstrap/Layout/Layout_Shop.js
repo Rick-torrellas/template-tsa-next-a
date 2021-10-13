@@ -3,10 +3,9 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import NProgress from "nprogress";
 import nProgress from "nprogress";
-import Navegacion from "./Navegacion";
-import Footer from "./Footer";
-
-export default function Layout({ children, title , nav = true , footer = true ,childrenMargin, navCat, navSubCat}) {
+import {Footer_Shop} from "@/components/react-bootstrap/Footer";
+import { NavBar_Main } from "@/components/react-bootstrap/NavBar";
+export function Layout_Shop({ children, title , nav = true , footer = true ,childrenMargin, categories, subcategories}) {
   const router = useRouter();
   useEffect(() => {
     // barra de carga, cuando se renderiza la pagina
@@ -26,9 +25,9 @@ export default function Layout({ children, title , nav = true , footer = true ,c
       <Head>
         <title>{title}</title>
       </Head>
-      {nav && <Navegacion navCat={navCat} navSubCat={navSubCat} />}
+      {nav && <NavBar_Main categories={categories} subcategories={subcategories} />}
       <main style={{margin: childrenMargin}}>{children}</main>
-      {footer && <Footer />}
+      {footer && <Footer_Shop />}
     </>
   );
 };

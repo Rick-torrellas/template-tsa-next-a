@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import axios from "axios";
-import config from "../../config";
-import Layout from "./../../components/Layout";
+import config from "@/config/index";
+import {Layout_Shop} from "../../components/react-bootstrap/Layout";
 import {Grid} from "@/components/react-bootstrap/Grid";
 import { Carta__Product } from "@/components/react-bootstrap/Carta";
 import { NavBar__SubCategorie } from "../../components/react-bootstrap/NavBar";
@@ -11,7 +11,7 @@ function Categorie({ categorie, products, subcategories }) {
   const { id } = router.query;
   return (
     <>
-      <Layout>
+      <Layout_Shop>
         <Content
           data-testid="content"
           id={id}
@@ -19,16 +19,18 @@ function Categorie({ categorie, products, subcategories }) {
           products={products}
           subcategories={subcategories}
         />
-      </Layout>
+      </Layout_Shop>
     </>
   );
 }
 export function Content({ categorie, products,subcategories, id }) {
   const catTitle = categorie.Title;
+  const caTDesc = categorie.Description;
   const url = "/subcategorie-by-categorie/[id]";
   return (
     <>
       <h1>{catTitle}</h1>
+      <p>{caTDesc}</p>
       <NavBar__SubCategorie 
       id={id}
       subcategories={subcategories}

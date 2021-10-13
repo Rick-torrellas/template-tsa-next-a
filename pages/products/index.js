@@ -1,14 +1,14 @@
-import Layout from "./../../components/Layout";
+import {Layout_Shop} from "../../components/react-bootstrap/Layout";
 import axios from "axios";
 import { _Sample } from "../../components/react-bootstrap/icons/react-bootstrap";
-import config from "../../config";
+import config from "@/config/index";
 import {Grid} from "@/components/react-bootstrap/Grid";
 import { Carta__Product } from "@/components/react-bootstrap/Carta";
 export default function Products({ products }) {
   return (
-    <Layout title="" >
+    <Layout_Shop title="" >
       <Content data-testid="content" products={products} />
-    </Layout>
+    </Layout_Shop>
   );
 }
 export function Content({ products }) {
@@ -35,8 +35,9 @@ export function Content({ products }) {
   );
 }
 export async function getServerSideProps() {
-  const Products = await axios.get(`${config.apiUrl}/products`);
+  const _Products = await axios.get(`${config.apiUrl}/products`);
+  const Products = _Products.data;
   return {
-    props: { products: Products.data },
+    props: { products: Products },
   };
 }

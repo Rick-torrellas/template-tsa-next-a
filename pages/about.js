@@ -1,13 +1,12 @@
-import Layout from "@/components/Layout";
+import {Layout_Shop} from "../components/react-bootstrap/Layout";
+import config from "@/config/index";
 
-
-export default function About({res}) {
+export default function About() {
+  const title = "About"
   return (
-    <Layout title="ola" childrenMargin="20%" >
-<Content 
-  res={res}
-/>
-    </Layout>
+    <Layout_Shop title={`${config.title} ${title}`} childrenMargin="20%" >
+<Content />
+    </Layout_Shop>
   )
 }
 function Content() {

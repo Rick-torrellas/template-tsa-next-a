@@ -1,17 +1,17 @@
-import Layout from "./../../components/Layout";
+import {Layout_Shop} from "../../components/react-bootstrap/Layout";
 import axios from "axios";
-import config from "../../config";
+import config from "@/config/index";
 import { Carta_Subcategorie } from "@/components/react-bootstrap/Carta";
 import { NavBar__SubCat } from "@/components/react-bootstrap/NavBar";
 export default function Categories({ subcategories, products }) {
   return (
-    <Layout title="Subcategories">
+    <Layout_Shop title="Subcategories">
       <Content
         data-testid="content"
         subcategories={subcategories}
         products={products}
       />
-    </Layout>
+    </Layout_Shop>
   );
 }
 export function Content({ subcategories, products }) {

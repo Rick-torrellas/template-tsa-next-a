@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import axios from "axios";
-import config from "../../config";
-import Layout from "./../../components/Layout";
+import config from "@/config/index";
+import {Layout_Shop} from "../../components/react-bootstrap/Layout";
 import {Grid} from "@/components/react-bootstrap/Grid";
 import { Carta__Product } from "@/components/react-bootstrap/Carta";
 import { NavBar__SubCat } from "../../components/react-bootstrap/NavBar";
@@ -12,14 +12,14 @@ function Subcategorie({ products, subcategories }) {
   console.log(id);
   return (
     <>
-      <Layout>
+      <Layout_Shop>
         <Content
           data-testid="content"
           id={id}
           products={products}
           subcategories={subcategories}
         />
-      </Layout>
+      </Layout_Shop>
     </>
   );
 }
